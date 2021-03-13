@@ -4,30 +4,28 @@ void setup(){
 
 
 void draw(){
-
-  int w = 11, h = 10; // amount of rects
-  int wRect = width / (w* 2);
-  int hRect = height / (h*2);
   
+  
+  int pWidth = 250, pHeight =250;
+  
+  int wRect = (pWidth-10)*28/940; 
+  int hRect = pHeight*32/800;
+  
+  int w =pWidth/wRect, h = pHeight/hRect; // amount of rects  
   
   color black = color(0);
   color white = color(255);
   
-
-
-  
   float angle = 0, offset = 0;
   
-  
   for(int row = 0; row < h; ++row) {
-    
-    
+        
     offset = sin(angle)*10;
+    int yRect = row * hRect;
     for(int column = 0; column < w; ++column) {
       
       int xRect = column * wRect;
-      int yRect = row * hRect;
-      
+
       xRect += offset;
       
       fill(column % 2 == 0 ? black: white);
@@ -36,7 +34,5 @@ void draw(){
     
     angle += PI/2;
   }
-
-
 
 }
