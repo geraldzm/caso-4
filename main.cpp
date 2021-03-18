@@ -88,12 +88,12 @@ string* generateStringForProcessing(Pattern* pattern){
 
     stringstream ss;
 
-    ss << "rectWidth:" << pattern->rectWidth << ".";
-    ss << "rectHeight:" << pattern->rectHeight << ";";
+    ss << pattern->rectWidth << ".";
+    ss << pattern->rectHeight << ",";
 
     for(auto i = pattern->rects.begin(); i < pattern->rects.end(); i++){
 
-        ss << "[" << i->x << "." << i->y << "." << i->color << "]";
+        ss << i->x << "." << i->y << "." << i->color ;
 
         if((i+1) != pattern->rects.end()) ss << ",";
 
