@@ -28,8 +28,8 @@ Pattern* calculatePattern(int pWidth, int pHeight) {
 
     float angle = 0, offset, PiByTwo = M_PI /2;
     int yRect;
-
-    for(int row = 0; row < amountRectsHeight; ++row) {
+    // -> 1   n = amountRectsHeight + amountRectsWidth
+    for(int row = 0; row < amountRectsHeight; ++row) { // 
 
         offset = sin(angle) * 10;
         yRect = row * pattern->rectHeight;
@@ -84,12 +84,30 @@ string* generateJson(Pattern* pattern){
     return new string(ss.str());
 }
 
+string* generateStringForProcessing(Pattern* pattern){
+
+    stringstream ss;
+
+    ss << "rectWidth:" << pattern->rectWidth << ".";
+    ss << "rectHeight:" << pattern->rectHeight << ";";
+
+    for(auto i = pattern->rects.begin(); i < pattern->rects.end(); i++){
+
+        ss << "[" << i->x << "." << i->y << "." << i->color << "]";
+
+        if((i+1) != pattern->rects.end()) ss << ",";
+
+    }
+
+    return new string(ss.str());
+}
+
 int main(){
 
     Pattern* pattern = calculatePattern(500, 500);
     //printPattern(pattern);
 
-    string* json = generateJson(pattern);
+    string* json = generateStringForProcessing(pattern);
     cout << *json << endl;
 
     // cleaning
