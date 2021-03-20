@@ -62,28 +62,6 @@ void printPattern(Pattern* pattern){
     }
 }
 
-// should return a string
-string* generateJson(Pattern* pattern){
-    stringstream ss;
-
-    ss << "{\n\"rectWidth\": " << pattern->rectWidth << "," << endl;
-    ss << "\"rectHeight\": " << pattern->rectHeight << "," << endl;
-    ss << "\"rects\": [" << endl;
-
-    for(auto i = pattern->rects.begin(); i < pattern->rects.end(); i++){
-
-        ss << "{\n\"x\": " << i->x << "," << endl;
-        ss << "\"y\": " << i->y << "," << endl;
-        ss << "\"color\": " << i->color << "\n}" << endl;
-
-        if((i+1) != pattern->rects.end()) ss << "," << endl;
-    }
-
-    ss << "]\n}" << endl;
-
-    return new string(ss.str());
-}
-
 string* generateStringForProcessing(Pattern* pattern){
 
     stringstream ss;
@@ -104,15 +82,15 @@ string* generateStringForProcessing(Pattern* pattern){
 
 int main(){
 
-    Pattern* pattern = calculatePattern(500, 500);
-    //printPattern(pattern);
+    Pattern* pattern = calculatePattern(900, 800);
+    printPattern(pattern);
 
-    string* json = generateStringForProcessing(pattern);
-    cout << *json << endl;
+    //string* json = generateStringForProcessing(pattern);
+    //cout << *json << endl;
+    //delete json;
 
     // cleaning
     delete pattern;
-    delete json;
 
     return 0;
 }
